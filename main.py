@@ -42,7 +42,7 @@ class CountdownTimer(QtWidgets.QWidget):
 
         # 使用 QLabel 显示倒计时
         self.label = QtWidgets.QLabel(self)
-        self.label.setStyleSheet("font-size: 30px; color: red; font-weight: bold;")
+        self.label.setStyleSheet("font-size: 120px; color: red; font-weight: bold;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.update_label()
 

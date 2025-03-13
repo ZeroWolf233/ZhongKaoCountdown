@@ -22,6 +22,12 @@ def get_countdown_seconds():
         print("获取倒计时失败:", e)
         exit(114514)
 
+def format_countdown(seconds):
+    days, seconds = divmod(seconds, 86400)
+    hours, seconds = divmod(seconds, 3600)
+    minutes, seconds = divmod(seconds, 60)
+    return f"{days}天{hours:02d}小时{minutes:02d}分{seconds:02d}秒"
+
 
 class CountdownTimer(QtWidgets.QWidget):
     def __init__(self, countdown_seconds):
@@ -36,12 +42,12 @@ class CountdownTimer(QtWidgets.QWidget):
 
         # 使用 QLabel 显示倒计时
         self.label = QtWidgets.QLabel(self)
-        self.label.setStyleSheet("font-size: 24px; color: white;")
+        self.label.setStyleSheet("font-size: 30px; color: red; font-weight: bold;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.update_label()
 
         # 设置窗口大小，并移动到桌面右上角（右上角距离屏幕10px）
-        self.resize(200, 100)
+        self.resize(500, 30)
         screen_geometry = QtWidgets.QApplication.desktop().availableGeometry()
         x = screen_geometry.width() - self.width() - 10
         y = 10
@@ -53,8 +59,7 @@ class CountdownTimer(QtWidgets.QWidget):
         self.timer.start(1000)
 
     def update_label(self):
-        minutes, seconds = divmod(self.countdown_seconds, 60)
-        self.label.setText(f"{minutes:02d}:{seconds:02d}")
+        self.label.setText("距离中考还剩  " + format_countdown(self.countdown_seconds))
 
     def tick(self):
         if self.countdown_seconds > 0:

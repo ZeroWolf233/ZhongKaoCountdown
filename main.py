@@ -47,7 +47,7 @@ class CountdownTimer(QtWidgets.QWidget):
         self.update_label()
 
         # 设置窗口大小，并移动到桌面右上角（右上角距离屏幕10px）
-        self.resize(500, 30)
+        self.resize(2000, 120)
         screen_geometry = QtWidgets.QApplication.desktop().availableGeometry()
         x = screen_geometry.width() - self.width() - 10
         y = 10

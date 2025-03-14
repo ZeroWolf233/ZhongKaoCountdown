@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def get_countdown_seconds():
     try:
         load_dotenv()
-        countdownTime = os.getenv("TIME")
+        countdownTime = os.getenv("TIME") or "https://hk2.l0.ink/api/zhongkao"
         response = requests.get(countdownTime)
         # 假设API返回的是一个纯文本格式的时间戳（单位：秒）
         timestamp = int(response.text.strip())
@@ -43,7 +43,7 @@ class CountdownTimer(QtWidgets.QWidget):
 
         # 使用 QLabel 显示倒计时
         self.label = QtWidgets.QLabel(self)
-        self.label.setStyleSheet("font-size: "+ os.getenv("SIZE") + "px; color: red; font-weight: bold;")
+        self.label.setStyleSheet("font-size: "+ str(os.getenv("SIZE")) + "px; color: red; font-weight: bold;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.update_label()
 
@@ -61,7 +61,7 @@ class CountdownTimer(QtWidgets.QWidget):
 
     def update_label(self):
         load_dotenv()
-        self.label.setText("距离" + os.getenv("LABLE") + "还剩 " + format_countdown(self.countdown_seconds))
+        self.label.setText("距离" + str(os.getenv("LABLE")) + "还剩 " + format_countdown(self.countdown_seconds))
 
     def tick(self):
         if self.countdown_seconds > 0:

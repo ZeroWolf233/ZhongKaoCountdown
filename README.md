@@ -20,5 +20,14 @@ pip install -r requirements.txt
 pyinstaller -F -w -i favicon.ico main.py
 ```
 
+## 环境变量
+| 环境变量   | 必填 | 默认值                             | 说明                           |
+|--------|------|---------------------------------|------------------------------|
+| TIME   | 是 | https://hk2.l0.ink/api/zhongkao | 倒计时结束的时间，格式应为时间戳，可以用api提供时间戳 |
+| LABLE  | 是 | 无                               | 倒计时的内容                       |
+| WIDTH  | 是 | 无                               | 窗口的宽度                        |
+| HEIGHT | 是 | 无                               | 窗口的高度                        |
+| SIZE   | 是 | 无                               | 字体大小                         |
+
 ## 鸣谢
 - [つきみむみ](https://www.pixiv.net/users/17674896) 图表来源 Pid: [128032053](https://www.pixiv.net/artworks/128032053)

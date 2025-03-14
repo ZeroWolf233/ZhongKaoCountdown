@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def get_countdown_seconds():
     try:
         load_dotenv()
-        url = os.getenv("API")
+        url = os.getenv("TIME")
         response = requests.get(url)
         # 假设API返回的是一个纯文本格式的时间戳（单位：秒）
         timestamp = int(response.text.strip())
@@ -26,7 +26,7 @@ def format_countdown(seconds):
     days, seconds = divmod(seconds, 86400)
     hours, seconds = divmod(seconds, 3600)
     minutes, seconds = divmod(seconds, 60)
-    return f"{days}天{hours:02d}小时{minutes:02d}分{seconds:02d}秒"
+    return f"{days}天 {hours:02d}:{minutes:02d}:{seconds:02d}:"
 
 
 class CountdownTimer(QtWidgets.QWidget):
@@ -59,7 +59,7 @@ class CountdownTimer(QtWidgets.QWidget):
         self.timer.start(1000)
 
     def update_label(self):
-        self.label.setText("距离中考还剩  " + format_countdown(self.countdown_seconds))
+        self.label.setText("距离中考还剩 " + format_countdown(self.countdown_seconds))
 
     def tick(self):
         if self.countdown_seconds > 0:

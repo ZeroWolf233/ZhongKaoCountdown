@@ -9,12 +9,14 @@
 
 ## 开箱即食(推荐)
 1. 从[Release](https://github.com/ZeroWolf233/ZhongKaoCountdown/releases)下载最新版
-2. 创建`.env`，编辑`API=<您的api>`，API返回值应为倒计时结束的时间戳
+2. 创建`.env`，编辑`TIME=<结束倒计时的时间戳>`
+3. 运行
 
 ## 自己编译
 ```bash
 git clone https://github.com/ZeroWolf233/ZhongKaoCountdown
 cd ZhongKaoCountdown
+pip install -r requirements.txt
 pyinstaller -F -w -i favicon.ico main.py
 ```
 

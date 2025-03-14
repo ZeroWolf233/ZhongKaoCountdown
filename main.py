@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 def get_countdown_seconds():
     try:
         load_dotenv()
-        url = os.getenv("TIME")
-        response = requests.get(url)
+        countdownTime = os.getenv("TIME")
+        response = requests.get(countdownTime)
         # 假设API返回的是一个纯文本格式的时间戳（单位：秒）
         timestamp = int(response.text.strip())
         now = int(time.time())
@@ -26,12 +26,13 @@ def format_countdown(seconds):
     days, seconds = divmod(seconds, 86400)
     hours, seconds = divmod(seconds, 3600)
     minutes, seconds = divmod(seconds, 60)
-    return f"{days}天 {hours:02d}:{minutes:02d}:{seconds:02d}:"
+    return f"{days}天 {hours:02d}:{minutes:02d}:{seconds:02d}"
 
 
 class CountdownTimer(QtWidgets.QWidget):
     def __init__(self, countdown_seconds):
         super().__init__()
+        load_dotenv()
         # 设置无边框、总在最前、透明背景
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint |
                             QtCore.Qt.WindowStaysOnTopHint |
@@ -42,12 +43,12 @@ class CountdownTimer(QtWidgets.QWidget):
 
         # 使用 QLabel 显示倒计时
         self.label = QtWidgets.QLabel(self)
-        self.label.setStyleSheet("font-size: 120px; color: red; font-weight: bold;")
+        self.label.setStyleSheet("font-size: "+ os.getenv("SIZE") + "px; color: red; font-weight: bold;")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.update_label()
 
         # 设置窗口大小，并移动到桌面右上角（右上角距离屏幕10px）
-        self.resize(2000, 120)
+        self.resize(int(os.getenv("WIDTH")), int(os.getenv("HEIGHT")))
         screen_geometry = QtWidgets.QApplication.desktop().availableGeometry()
         x = screen_geometry.width() - self.width() - 10
         y = 10
@@ -59,7 +60,8 @@ class CountdownTimer(QtWidgets.QWidget):
         self.timer.start(1000)
 
     def update_label(self):
-        self.label.setText("距离中考还剩 " + format_countdown(self.countdown_seconds))
+        load_dotenv()
+        self.label.setText("距离" + os.getenv("LABLE") + "还剩 " + format_countdown(self.countdown_seconds))
 
     def tick(self):
         if self.countdown_seconds > 0:

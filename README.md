@@ -31,4 +31,4 @@ pyinstaller -F -w -i favicon.ico main.py
 | SIZE   | 是 | 无                               | 字体大小                         |
 
 ## 鸣谢
-- [つきみむみ](https://www.pixiv.net/users/17674896) 图表来源 Pid: [128032053](https://www.pixiv.net/artworks/128032053)
+- [つきみむみ](https://www.pixiv.net/users/17674896) 图标来源 Pid: [128032053](https://www.pixiv.net/artworks/128032053)
